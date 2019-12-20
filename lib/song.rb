@@ -30,6 +30,12 @@ class Song
   #     self.send("#{property}=", value)
   #   end
   # end
+  
+  def initialize(params = {})
+    params.each { |key,value| instance_variable_set("@#{key}", value) }
+    set_defaults
+    instance_variables.each {|var| self.class.send(:attr_accessor, var.to_s.delete('@'))}
+  end
 
   def save
     sql = "INSERT INTO #{table_name_for_insert} (#{col_names_for_insert}) VALUES (#{values_for_insert})"
