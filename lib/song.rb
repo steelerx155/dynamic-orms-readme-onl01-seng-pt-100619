@@ -25,11 +25,11 @@ class Song
     attr_accessor col_name.to_sym
   end
 
-  # def initialize(options={})
-  #   options.each do |property, value|
-  #     self.send("#{property}=", value)
-  #   end
-  # end
+  def initialize(options={})
+    options.each do |property, value|
+      self.send("#{property}=", value)
+    end
+  end
   
   def initialize(params = {})
     params.each { |key,value| instance_variable_set("@#{key}", value) }
